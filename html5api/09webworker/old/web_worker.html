@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        if ( !!window.Worker ) {
+            alert('웹 워커를 지원하는 브라우저입니다.');
+        } else {
+            alert( '웹 워커를 지원하지 않는 브라우저입니다.' );
+        }
+        var worker = new Worker( 'worker.js' );
+        worker.postMessage( '워커 실행' );  // 워커에 메시지를 보낸다.
+
+        // 메시지는 JSON구조로 직렬화 할 수 있는 값이면 사용할 수 있다. Object등
+        // worker.postMessage( { name : '302chanwoo' } );
+
+        // 워커로 부터 메시지를 수신한다.
+        worker.onmessage = function( e ) {
+            console.log('호출 페이지 - ', e.data );
+        };
+
+        function start() {
+            // worker 메시지 수신 listener
+            self.onmessage = function( e ) {
+                console.log( 'Worker가 받은 메시지 ', e.data );
+
+                // 1초 후에 호출한 페이지에 데이터를 보낸다.
+                setTimeout( function() {
+                    postMessage( 'Worker Value' );
+                }, 1000 );
+            };
+        }
+        function stop() {
+            worker.terminate();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="start()">Worker 호출</button>
+    <button onclick="stop()">Worker 중지</button>
+</body>
+</html>
