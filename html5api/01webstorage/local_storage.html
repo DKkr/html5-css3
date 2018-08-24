@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #emailSpan {border:1px solid blue; margin: 20px; padding: 20px;}
+        button {margin: 20px;}
+    </style>
+    <script>
+        window.onload = function () {
+            view();
+        }
+        function view() {
+            if(localStorage.getItem('email')){
+                document.getElementById('emailSpan').innerHTML =
+                    localStorage.getItem('email');
+            }
+        }
+        function save() {
+            if (!localStorage.getItem('email')) {
+            } else {
+                var msg = "저장된 값("+ localStorage.getItem('email')) + ")
+            }
+
+        }
+        function remove() {
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Email localStorage에 저장하기</h1>
+
+    Email 입력 : <input type="email" id="emailInput">
+    <button>저장</button>
+    <hr/>
+    Email 보기 : <span id="emailSpan"></span>
+    <button onclick="view()">조회</button>
+    <button onclick="remove()">삭제</button>
+</body>
+</html>

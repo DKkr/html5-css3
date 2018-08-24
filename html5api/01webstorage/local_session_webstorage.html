@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #emailSpan {
+            border: 1px solid black;
+            margin: 20px;
+            width: 300px;
+        }
+        button {
+            margin: 20px;
+        }
+    </style>
+    <script>
+        window.onstorage = function(e) {
+            console.log('The ' + e.key + ' key has been changed from ' + e.oldValue + ' to ' + e.newValue + '.');
+        };
+
+        window.onload = function () {
+            view();    
+        }
+        function session_save() {
+            var nameInput = document.getElementById('nameInput');
+            if (!sessionStorage.getItem("name")) {
+                sessionStorage.setItem("name", nameInput.value);
+                alert(nameInput.value + " 저장했음");
+                nameInput.value='';
+                view();
+            }else {
+                var msg = "저장된 값("+ sessionStorage.getItem('name') + ")이 있는데 수정 할래?"
+                var flag = confirm(msg);
+                if(flag) {
+                    sessionStorage.setItem("name", nameInput.value);
+                    document.getElementById("nameInput").value='';
+                    view();
+                }
+            }
+        }
+        function local_save() {
+            var emailInput = document.getElementById('emailInput');
+            if(!localStorage.getItem("email")) {
+                localStorage.setItem("email", emailInput.value);
+                alert(emailInput.value + " 저장했음");
+                emailInput.value='';
+                view();
+            }else {
+                var msg = "저장된 값("+ localStorage.getItem('email') + ")이 있는데 수정 할래?"
+                var flag = confirm(msg);
+                if(flag) {
+                    localStorage.setItem("email", emailInput.value);
+                    document.getElementById("emailInput").value='';
+                    view();
+                }
+            }
+        }
+        function view() {
+            if(localStorage.getItem('email')){
+                document.getElementById('emailSpan').innerHTML = localStorage.getItem('email');
+                //alert('저장된 값이 있음');
+            }
+            if(sessionStorage.getItem('name')){
+                document.getElementById('nameSpan').innerHTML = sessionStorage.getItem('name');
+                //alert('저장된 값이 있음');
+            }
+        }
+
+        function session_remove() {
+            var msg = "저장된 값("+ sessionStorage.getItem('name') + ")이 있는데 삭제 할래?"
+            var flag = confirm(msg);
+            if(flag) {
+                sessionStorage.removeItem("name");
+                document.getElementById("nameSpan").innerHTML='';
+                document.getElementById("nameInput").value='';
+            }
+        }
+
+        function local_remove() {
+            var msg = "저장된 값("+ localStorage.getItem('email') + ")이 있는데 삭제 할래?"
+            var flag = confirm(msg);
+            if(flag) {
+                localStorage.removeItem("email");
+                document.getElementById("emailSpan").innerHTML='';
+                document.getElementById("emailInput").value='';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Web Storage</h1>
+
+    Name 입력 : <input type="text" id="nameInput">
+    <button onclick="session_save()">sessionStorage 저장</button>
+    <br>
+    Email 입력 : <input type="email" id="emailInput">
+    <button onclick="local_save()">localStorage 저장</button>
+    <hr>
+    <table>
+        <caption>
+            <button onclick="view()">보기</button>
+        </caption>
+        <tr>
+            <th>Name : </th>
+            <td><span id="nameSpan"></span></td>
+            <td><button onclick="session_remove()">삭제</button></td>
+        </tr>
+        <tr>
+            <th>Email :</th>
+            <td><span id="emailSpan"></span></td>
+            <td><button onclick="local_remove()">삭제</button></td>
+        </tr>
+    </table>
+</body>
+</html>

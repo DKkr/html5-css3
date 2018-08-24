@@ -1,0 +1,65 @@
+body {
+    font-family: "맑은고딕";
+    /*background-image: url("../img/bg.JPG");*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    /*background-position: left top;*/
+    background: url("../img/bg.JPG") no-repeat fixed left top;
+    background-size: cover;
+}
+#wrapper{
+    margin: 10px auto; /*wrapper영역을 화면 중앙에 배치*/
+    width: 890px;
+}
+article{
+    display: block;
+    margin: 15px auto 0;
+    /*border: 1px solid white;*/
+}
+nav{
+    width: 100%; /*부모 요소(article)의 너비와 같게*/
+    height: 40px;
+    background-color: #222;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    /*display: inline;*/
+    float: left;
+    margin: 10px;
+}
+nav ul li a{
+    padding: 6px 35px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow:0px 1px 1px black;
+}
+nav a:hover{
+    background-color: #ffd800;
+    color: black;
+    text-shadow: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+nav a.current{
+    background-color: #fff;
+    color: black;
+    text-shadow: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+section{
+    padding: 5px 20px;
+    border-left: 2px solid #222;
+    border-right: 2px solid #222;
+    background-color: rgba(255,255,255,.9);
+}
+footer{
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 9px;
+    background-color: #666;
+    color: #fff;
+    border: 2px solid #222;
+}

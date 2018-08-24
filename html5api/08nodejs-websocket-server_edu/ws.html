@@ -1,0 +1,19 @@
+<h1>
+    Web Socket Example
+</h1>
+<p>
+    open console to see connection.
+</p>
+<script>
+    var ws = new WebSocket('ws://localhost:40510');
+
+    ws.onopen = function () {
+        console.log('websocket is connected ...')
+        ws.send('connected')
+    }
+
+    ws.onmessage = function (ev) {
+        console.log('onmessage 이벤트 발생');
+        console.log(ev);
+    }
+</script>

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        svg, img{
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+<body>
+<h1>svg tag 사용</h1>
+<svg width="400" height="400">
+    <rect x="0" y="0" width="30" height="15" style="stroke: #ff0000; fill: none;">
+
+        <animate id="one"
+                 attributeName="x" attributeType="XML"
+                 from="0" to="400"
+                 begin="0s" dur="10s" fill="freeze"
+        />
+        <animate
+                attributeName="y" attributeType="XML"
+                from="0" to="50"
+                begin="one.end" dur="10s" fill="freeze"
+        />
+    </rect>
+    <circle cx="30" cy="30" r="25" style="stroke: none; fill: #0000ff;">
+
+        <animate id="one"
+                 attributeName="cx" attributeType="XML"
+                 from="30" to="370"
+                 begin="0s" dur="10s" fill="freeze"
+        />
+        <animate
+                attributeName="cy" attributeType="XML"
+                from="30" to="50"
+                begin="one.end" dur="10s" fill="freeze"
+        />
+    </circle>
+</svg>
+<h1>svg file 사용</h1>
+<img src="my_vector.svg" />
+</body>
+</html>

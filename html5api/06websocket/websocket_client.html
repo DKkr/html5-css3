@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var wsUrl = "ws://echo.websocket.org";
+        var output;
+        window.onload = function () {
+            output = document.getElementById("output");
+            websocket = new WebSocket(wsUrl);
+            websocket.onopen = function (ev) {
+                writeToScreen('연결시작');
+                var sendMsg = '나는 웹소켓 클라이언트야';
+                writeToScreen(`msg 발신 : ${sendMsg}`);
+                this.send(sendMsg);
+            }
+            websocket.onmessage = function (ev) {
+                writeToScreen(`msg 수신 : ${ev.data}`);
+                if(this.readyState == WebSocket.OPEN){
+                    this.close();
+                }
+            }
+            websocket.onerror = function (ev) {
+                writeToScreen(`에러발생 : ${ev.type}`);
+            }
+            websocket.onclose = function (ev) {
+                writeToScreen('연결해제');
+            }
+        }
+        function writeToScreen(msg) {
+            var pTag = document.createElement("p");
+            pTag.innerText = msg;
+            output.appendChild(pTag);
+        }
+    </script>
+</head>
+<body>
+    <h2>Websocket Client</h2>
+    <div id="output"></div>
+</body>
+</html>

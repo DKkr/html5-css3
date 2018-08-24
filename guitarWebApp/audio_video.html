@@ -1,0 +1,25 @@
+<link href="./css/common.css" rel="stylesheet" type="text/css">
+<h2>Audio 재생</h2>
+<div class="musician">
+    <img src="audio_video/bach.jpg">
+    <h3>바흐(Johann Sebastian Bach, 1685~1750)</h3>
+    <p>서양 음악의 아버지라고 일컫는 바흐는  바로크 시대의 최후에 위치하는 대작곡가로서,
+        독일음악의 전통에 깊이 뿌리박고 있을 뿐 아니라,
+        그 위에 이탈리아나 프랑스의 양식을 채택하고 그것들을 융합하여 독자적 개성적인 음악을 창조하였다.</p>
+    <h3>Sinfonia</h3>
+    <audio controls autoplay muted loop>
+        <source src="audio_video/bach.mp3">
+        <source src="audio_video/bach.ogg">
+    </audio>
+</div>
+<h2>Video 재생</h2>
+<div class="musician">
+    <video width="450px" height="320px" controls poster="audio_video/ready.jpg">
+        <source src="audio_video/gate.mp4">
+        <source src="audio_video/gate.webm">
+        <source src="audio_video/gate.wmv">
+        <source src="audio_video/gate.ogv">
+        이 영상을 보기 위해서는 HTML5를 지원하는 브라우저가 필요합니다.
+        <track src="audio_video/Painting.vtt" srclang="ko" label="Korean" default>
+    </video>
+</div>

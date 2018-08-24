@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag & Drop</title>
+    <style>
+        #dropDiv{
+            border: 2px solid blue;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        function dragStart() {
+            document.getElementById('dragDiv').addEventListener('drag', move);
+            document.getElementById('dragImg').addEventListener('drag', move);
+            document.getElementById('dropDiv').addEventListener('dragover', over);
+            document.getElementById('dropDiv').addEventListener('drop', drop);
+        }
+        var result;
+        function move(e) {
+            result = document.getElementById('statusSpan');
+            result.innerHTML = 'x : ' + e.x + ' y : ' + e.y;
+        }
+        function over(e) {
+            e.preventDefault();
+            result.innerHTML = 'DragOver 되었습니다!';
+        }
+        function drop(e) {
+            e.preventDefault();
+            result.innerHTML = 'Drop 되었습니다!';
+        }
+    </script>
+</head>
+<body>
+    <h1>Drag & Drop</h1>
+    <div draggable="true" id="dragDiv" ondragstart="dragStart()">Drag & Drop</div>
+    <br>
+    <img src="html5.png" id="dragImg" draggable="true" ondragstart="dragStart(event)">
+    <br>
+    <span id="statusSpan"></span>
+    <br>
+    <div dropzone="copy" id="dropDiv"></div>
+</body>
+</html>

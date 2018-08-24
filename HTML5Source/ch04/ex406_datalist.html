@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> 추가된 입력 요소 예제 </title> 
+  </head>
+  <body>
+    <form method="get" action="form_app.js">
+      <h3>도서 구입 요청</h3>
+      참가국 : <input type="text" size="12" list="country" />
+      <datalist id="country">
+        <option value="스페인"/>
+        <option value="영국"/>
+        <option value="독일"/>
+      </datalist>
+      <p>&nbsp; <p>&nbsp;
+      <p>금액 : <input type="number" name="price" size="8" min="0" step="100" value="0" /> 원 X   
+        <input type="number" name="num" size="5" step="1" min="0" value="0" /> 권 = 
+        <output onForminput="value=price.valueAsNumber*num.valueAsNumber+'원'"/> 
+      <p>&nbsp; <p>암호화 <keygen name="key"/> 
+      &nbsp;
+      <input type="submit" value="구입"/>
+
+   </form>
+ </body>
+</html>

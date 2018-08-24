@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag & Drop - data 전송</title>
+    <style>
+        #dropDiv{
+            border: 2px solid yellow;
+            background-color: black;
+            color: white;
+            width: 300px;
+            height: 200px;
+            margin: 30px;
+        }
+        #dragBlue{
+            background-color: blue;
+            color: white;
+            width: 100px;
+            margin: 10px;
+            padding: 10px;
+        }
+        #dragRed{
+            background-color: red;
+            color: white;
+            width: 100px;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        var dragBlue;
+        var dragRed;
+        var dropDiv;
+
+        window.onload = function () {
+            dragBlue = document.getElementById('dragBlue');
+            dragRed = document.getElementById('dragRed');
+            dropDiv = document.getElementById('dropDiv');
+
+            dragBlue.addEventListener('dragstart', startFunc);
+            dragRed.addEventListener('dragstart', startFunc);
+            dropDiv.addEventListener('dragover', overFunc);
+            dropDiv.addEventListener('drop', dropFunc);
+        }
+
+        function startFunc(e) {
+            e.dataTransfer.setData('color', e.target.innerText);
+            e.dataTransfer.effectAllowed = 'copy';
+        }
+        function overFunc(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+        }
+        function dropFunc(e) {
+            e.preventDefault();
+            dropDiv.style['background-color'] = e.dataTransfer.getData('color');
+        }
+    </script>
+</head>
+<body>
+    <h1>Drag & Drop - data 전송</h1>
+    <span id="dragBlue" draggable="true">blue</span>
+    <span id="dragRed" draggable="true">red</span>
+    <div id="dropDiv">Color를 여기로 드래그하세요.</div>
+</body>
+</html>

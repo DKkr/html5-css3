@@ -1,0 +1,77 @@
+<head>
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <script>
+        window.onload = function () {
+            view_favorite();
+        }
+        function save_favorite() {
+            if(!localStorage){
+                console.log('local storage is not supported by this browser.');
+            }else {
+                var exist_count = 0;
+                if(localStorage.getItem('numFavorites')){
+                    exist_count = Number(localStorage.getItem('numFavorites'));
+                }
+                spanTags = document.getElementsByTagName('span');
+                var count = 0;
+                for(var i=0;i<spanTags.length;i++) {
+                    if(spanTags[i].firstChild.checked == true) {
+                        localStorage[count+exist_count] = spanTags[i].innerText;
+                        count++;
+                    }
+                }
+                exist_count += count;
+                alert(exist_count);
+                localStorage.setItem('numFavorites',exist_count);
+                var ans = confirm("등록되었습니다. 확인하시겠습니까?");
+                if (ans == true) {
+                    view_favorite()
+                }
+            }
+        }//save_favorite
+
+        function view_favorite() {
+            var favorList = document.getElementById('favorite_list');
+            favorList.innerHTML = '';
+
+            if(!localStorage){
+
+            }else {
+                var numFavorites = localStorage.getItem('numFavorites');
+                alert(numFavorites);
+                for(var i=0;i<numFavorites;i++) {
+                    favorList.innerHTML = favorList.innerHTML + '<li>'+localStorage[i]+'</li>\n';
+                }
+            }
+        }//view_favorite
+
+        function clear_favorite() {
+            localStorage.clear();
+            document.getElementById('favorite_list').innerHTML = '';
+        }
+    </script>
+</head>
+<h2>Guitar 도서 목록</h2>
+<div class="musician">
+    <form>
+        <span><input type="checkbox" />12주 완성 통기타  초능력 기타: 초급 | 김종양 | 도약에듀 | 13,000원<br/></span>
+        <span><input type="checkbox" />12주 완성 통기타  초능력 기타: 중급 | 김종양 | 도약에듀 | 13,000원<br/></span>
+        <span><input type="checkbox" />기타교본을 겸한  통기타 명곡집 | 성강환 | 아름출판사 | 24,000원<br/></span>
+        <span><input type="checkbox" />손에 착착 기타 스케일 | 사토 칸지 | 기타매거진 편집부 | 15,000원<br/></span>
+        <span><input type="checkbox" />류주석의  통기타 때려잡기 | 류주석 | 세광데이타테크 | 15,000원<br/></span>
+        <span><input type="checkbox" />클래식 기타 입문 과정 바우 기타 교본 | 신현수 | 소리둥지 | 24,000원<br/></span>
+        <span><input type="checkbox" />쉽게 배우는  통기타 교실. 1: 스트로크 편 | 최윤철, 임순범 공저 | 생능출판사 | 25,000원<br/></span>
+        <span><input type="checkbox" />기타 명곡집. 2 가요 편(증보개정판) | 이재광 | 디자인기타 | 9,000원<br/></span>
+        <span><input type="checkbox" />기타 명곡집. 3: 팝송 영화음악편 | 김명표 | 디자인기타 | 28,000원<br/></span>
+        <span><input type="checkbox" />통기타 입문 반주법 | 김정환 | 세광아트 | 5,000원<br/></span>
+    </form>
+    <p>
+        <button onclick="save_favorite()">관심도서 등록</button>
+        <button onclick="view_favorite()">관심도서 보기</button>
+        <button onclick="clear_favorite()">관심도서 초기화</button>
+    </p>
+</div>
+<h2>Guitar 관심 도서 목록</h2>
+<div class="musician">
+    <ol id="favorite_list"></ol>
+</div>

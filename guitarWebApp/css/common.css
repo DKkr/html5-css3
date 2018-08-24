@@ -1,0 +1,23 @@
+h2{
+    margin-left: 10px;
+    background: url("../img/icon.png") no-repeat left top;
+    background-size: contain;
+    padding: 10px 0 10px 50px;
+}
+
+.rotate{
+    -webkit-transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    -o-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+
+.musician{
+    display: block;
+    width: 90%;
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
