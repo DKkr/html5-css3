@@ -57,17 +57,19 @@ ul li span {
   display: inline-block;
   width: 90px;
   font-weight: bold;
-  color: #999;
+  color: #11f;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .sent {
-  background-color: #F7F7F7;
+  background-color: #777;
 }
 
-.received {}
+.received {
+  background-color: #8bf;
+}
 
 #message-form {
   margin-top: 1.5rem;

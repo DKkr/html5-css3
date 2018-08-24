@@ -9,11 +9,11 @@
 
     ws.onopen = function () {
         console.log('websocket is connected ...')
-        ws.send('connected')
+        ws.send('I am client')
     }
 
     ws.onmessage = function (ev) {
         console.log('onmessage 이벤트 발생');
-        console.log(ev);
+        console.log(ev.data);
     }
 </script>
